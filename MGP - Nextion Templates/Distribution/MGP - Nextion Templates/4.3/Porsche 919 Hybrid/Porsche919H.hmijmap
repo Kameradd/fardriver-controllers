@@ -1,0 +1,171 @@
+{
+  "BindingsEx": {
+    "pit.#page.pic": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='IRacing',if(left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit], 0, 2)>[SpeedLocal]+1, 2,if([SpeedLocal]-1>left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit], 0, 2),7,2)),7)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "pic"
+    },
+    "global.regen.val": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.EnergyMGU_KLapDeployPct]*100"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "val"
+    },
+    "global.energy.val": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.EnergyERSBatteryPct]*100"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "val"
+    },
+    "global.tc.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcTractionControl3]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tcr.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcTractionControl]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tcf.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcTractionControl2]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.recup.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcMGUKRegenGain]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tplf.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureFrontLeft]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.throttle.txt": {
+      "Formula": {
+        "Expression": "truncate([Throttle])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprf.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureFrontRight]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprl.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureRearLeft]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprr.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureRearRight]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "pit.speed.picc": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='IRacing',if(left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit], 0, 2)>[SpeedLocal]+1, 2,if([SpeedLocal]-1>left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit], 0, 2),7,2)),7)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "picc"
+    },
+    "global.bbias.txt": {
+      "Formula": {
+        "Expression": "round([BrakeBias],1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.delta.pco": {
+      "Formula": {
+        "Expression": "[DeltaToSessionBest]"
+      },
+      "StartColor": "#FF008000",
+      "EnableMiddleColor": true,
+      "MiddleColor": "#FFFFFFFF",
+      "MiddleColorValue": 0.0,
+      "EndColor": "#FFFF0000",
+      "StartColorValue": -0.5,
+      "EndColorValue": 0.5,
+      "Mode": 4,
+      "TargetPropertyName": "pco"
+    },
+    "global.delta.txt": {
+      "Formula": {
+        "Expression": "if([DeltaToSessionBest]>=10,round([DeltaToSessionBest],0),round([DeltaToSessionBest],1))"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    }
+  },
+  "RolesEx": {
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 2\r\n}",
+    "Global.speed": "SpeedRole;{}",
+    "Global.rpm": "RPMRole;{}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [],
+  "PagesMappings": [
+    {
+      "PageName": "splash",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "page0",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page1",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "pit",
+      "ConditionToPage": {
+        "Expression": "[PitLimiterOn]"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    }
+  ],
+  "RefreshDelaysEx": {},
+  "VirtualPages": []
+}

@@ -1,0 +1,155 @@
+{
+  "BindingsEx": {
+    "global.p0.vis": {
+      "Formula": {
+        "Expression": "[Rpms]>7200"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "vis"
+    },
+    "global.tplf.txt": {
+      "Formula": {
+        "Expression": "[TyrePressureFrontLeft]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.abs.txt": {
+      "Formula": {
+        "Expression": "[ABSLevel]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuel.txt": {
+      "Formula": {
+        "Expression": "round([Fuel],1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tc2.txt": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='AssettoCorsaCompetizione',[GameRawData.Graphics.TCCut],[TCLevel])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tc1.txt": {
+      "Formula": {
+        "Expression": "[TCLevel]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprf.txt": {
+      "Formula": {
+        "Expression": "[TyrePressureFrontRight]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tplr.txt": {
+      "Formula": {
+        "Expression": "[TyrePressureRearLeft]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprr.txt": {
+      "Formula": {
+        "Expression": "[TyrePressureRearRight]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.llap.txt": {
+      "Formula": {
+        "Expression": "[LastLapTime]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.bbal.txt": {
+      "Formula": {
+        "Expression": "[BrakeBias]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oiltmp.txt": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='AssettoCorsaCompetizione',round([WaterTemperature],1)+2.4,round([OilTemperature],1))"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.wattmp.txt": {
+      "Formula": {
+        "Expression": "round([WaterTemperature],1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.revbar.vis": {
+      "Formula": {
+        "Expression": "[Rpms]<7200"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "vis"
+    }
+  },
+  "RolesEx": {
+    "Global.revbar": "RPMBarRole;{}",
+    "Global.lapdiff": "LiveDeltaRole;{\r\n  \"Precision\": 3\r\n}",
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.speed": "SpeedRole;{}",
+    "Global.pos": "PositionRole;{}",
+    "page1_virt1.llap": "LapLastTimeRole;{}",
+    "page1.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 2\r\n}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [],
+  "PagesMappings": [
+    {
+      "PageName": "page0",
+      "ConditionToPage": {
+        "Expression": "[GameRawData.Telemetry.EngineWarnings]=14"
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "page1",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page1_virt1",
+      "EventMappings": [
+        {
+          "EventName": "DataCorePlugin.NewLap",
+          "Duration": 4000
+        }
+      ],
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    }
+  ],
+  "RefreshDelaysEx": {},
+  "VirtualPages": [
+    {
+      "PageBase": "page1",
+      "PageName": "page1_virt1"
+    }
+  ]
+}

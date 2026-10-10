@@ -1,0 +1,341 @@
+{
+  "BindingsEx": {
+    "global.tcc.txt": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='IRacing',[GameRawData.Telemetry.dcTractionControl],[TCLevel])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tcr.txt": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='IRacing',[GameRawData.Telemetry.dcTractionControl2],[TCLevel])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ac.txt": {
+      "Formula": {
+        "Expression": "11"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.map.txt": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='IRacing',[GameRawData.Telemetry.dcFuelMixture],[EngineMap])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.watert.txt": {
+      "Formula": {
+        "Expression": "round([WaterTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oilt.txt": {
+      "Formula": {
+        "Expression": "round([OilTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oilp.txt": {
+      "Formula": {
+        "Expression": "[OilPressure]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.waterp.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.WaterLevel]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.predtime.txt": {
+      "Formula": {
+        "Expression": "left([PersistantTrackerPlugin.EstimatedLapTime],4,8)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuellap.txt": {
+      "Formula": {
+        "Expression": "[DataCorePlugin.Computed.Fuel_LitersPerLap]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuellvl.txt": {
+      "Formula": {
+        "Expression": "truncate([DataCorePlugin.Computed.Fuel_Percent])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuelp.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.FuelPress]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fueldelta.txt": {
+      "Formula": {
+        "Expression": "left([DataCorePlugin.Computed.Fuel_RemainingLaps],0,4)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page4.throttlep.txt": {
+      "Formula": {
+        "Expression": "round([Throttle],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page4.#page.pic": {
+      "Formula": {
+        "Expression": "if(left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit], 0, 2)>[SpeedLocal]+1, 1,if([SpeedLocal]-1>left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit], 0, 2),3,2))"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "pic"
+    },
+    "global.pitspeedgood.vis": {
+      "Formula": {
+        "Expression": "1=0"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "vis"
+    },
+    "global.pitspeedbad.vis": {
+      "Formula": {
+        "Expression": "1=0"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "vis"
+    },
+    "global.catcht.txt": {
+      "Formula": {
+        "Expression": "'0.00'"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page1.seqdiff.txt": {
+      "Formula": {
+        "Expression": "[PersistantTrackerPlugin.SessionBestLiveDeltaSeconds]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page1.seqdiff.bco": {
+      "Formula": {
+        "Expression": "[PersistantTrackerPlugin.SessionBestLiveDeltaSeconds]"
+      },
+      "StartColor": "#FF008000",
+      "EnableMiddleColor": true,
+      "MiddleColor": "#FF000000",
+      "MiddleColorValue": 0.0,
+      "EndColor": "#FFFF0000",
+      "StartColorValue": -0.5,
+      "EndColorValue": 0.5,
+      "Mode": 4,
+      "TargetPropertyName": "bco"
+    },
+    "global.seqdiff.txt": {
+      "Formula": {
+        "Expression": "[PersistantTrackerPlugin.SessionBestLiveDeltaProgressSeconds]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.seqdiff.bco": {
+      "Formula": {
+        "Expression": "[PersistantTrackerPlugin.SessionBestLiveDeltaProgressSeconds]"
+      },
+      "StartColor": "#FF000000",
+      "EnableMiddleColor": true,
+      "MiddleColor": "#FF000000",
+      "MiddleColorValue": 0.0,
+      "EndColor": "#FFFF0000",
+      "StartColorValue": -0.5,
+      "EndColorValue": 0.5,
+      "Mode": 4,
+      "TargetPropertyName": "bco"
+    },
+    "pit.#page.pic": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='IRacing',if(left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit], 0, 2)>[SpeedLocal]+1, 1,if([SpeedLocal]-1>left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit], 0, 2),3,2)),3)\r\n\r\n"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "pic"
+    },
+    "global.throttlep.txt": {
+      "Formula": {
+        "Expression": "truncate([Throttle])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    }
+  },
+  "RolesEx": {
+    "Global.laptime": "LapLastTimeRole;{}",
+    "Global.lapstogo": "LapRemainingRole;{}",
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.rpm": "RPMRole;{}",
+    "Global.fueldelta": "FuelRemainingRole;{}",
+    "page4.speed": "SpeedRole;{}",
+    "Global.lapnr": "LapRole;{}",
+    "Global.speed": "SpeedRole;{}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [
+    {
+      "X": 0,
+      "Y": 0,
+      "W": 50,
+      "H": 100,
+      "Action": "previouspage",
+      "Pages": [
+        "page1",
+        "page2",
+        "page3",
+        "qualy",
+        "fuel",
+        "race"
+      ]
+    },
+    {
+      "X": 50,
+      "Y": 0,
+      "W": 50,
+      "H": 100,
+      "Action": "nextpage",
+      "Pages": [
+        "page1",
+        "page2",
+        "page3",
+        "qualy",
+        "fuel",
+        "race"
+      ]
+    }
+  ],
+  "PagesMappings": [
+    {
+      "PageName": "page0",
+      "ConditionToPage": {
+        "Expression": "[GameRawData.Telemetry.EngineWarnings]=14"
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "page1",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page2",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page3",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page4",
+      "ConditionToPage": {
+        "Expression": "[PitLimiterOn]"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page5",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": true
+    },
+    {
+      "PageName": "page6",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": true
+    },
+    {
+      "PageName": "welcome",
+      "ConditionToPage": {
+        "Expression": "if([DataCorePlugin.CurrentGame]='IRacing',[GameRawData.Telemetry.EngineWarnings]=14,[Rpms]>0)"
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "race",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "fuel",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "qualy",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "pit",
+      "ConditionToPage": {
+        "Expression": "[PitLimiterOn]"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    }
+  ],
+  "RefreshDelaysEx": {},
+  "VirtualPages": []
+}

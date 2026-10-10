@@ -1,0 +1,246 @@
+{
+  "BindingsEx": {
+    "global.t1.txt": {
+      "Formula": {
+        "Expression": "[TCLevel]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.t0.txt": {
+      "Formula": {
+        "Expression": "[ABSLevel]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.t3.txt": {
+      "Formula": {
+        "Expression": "if([DataCorePlugin.CurrentGame] =='IRacing',[GameRawData.SessionData.CarSetup.Chassis.InCarDials.EngineMapSetting], [EngineMap])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.wat.txt": {
+      "Formula": {
+        "Expression": "[WaterTemperature]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oil.txt": {
+      "Formula": {
+        "Expression": "round([OilTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "main.pitlimit.vis": {
+      "Formula": {
+        "Expression": "[PitLimiterOn]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "vis"
+    },
+    "global.pitlimit.vis": {
+      "Formula": {
+        "Expression": "[PitLimiterOn]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "vis"
+    },
+    "global.water.txt": {
+      "FormatString": "0",
+      "Formula": {
+        "Expression": "round([WaterTemperature], 0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.pos.txt": {
+      "Formula": {
+        "Expression": "[Position]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.speed.txt": {
+      "Formula": {
+        "Expression": "round([SpeedKmh], 0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuel.txt": {
+      "FormatString": "0.00",
+      "Formula": {
+        "Expression": "round([Fuel], 2)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tpfl.txt": {
+      "Formula": {
+        "Expression": "Round([TyrePressureFrontLeft]*6.89475729,0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tpfr.txt": {
+      "Formula": {
+        "Expression": "Round([TyrePressureFrontRight]*6.89475729,0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprl.txt": {
+      "Formula": {
+        "Expression": "Round([TyrePressureRearLeft]*6.89475729,0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprr.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureRearRight]*6.89475729,0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.rpmbar.vis": {
+      "Formula": {
+        "Expression": "[Rpms]<6800"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "vis"
+    },
+    "global.revlimit.vis": {
+      "Formula": {
+        "Expression": "[Rpms]>6800"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "vis"
+    },
+    "global.tracktemp.txt": {
+      "Formula": {
+        "Expression": "left([GameRawData.SessionData.WeekendInfo.TrackSurfaceTemp], 0, 5)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuelcon1.txt": {
+      "Formula": {
+        "Expression": "left([DataCorePlugin.Computed.Fuel_LastLapConsumption],0,4)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.feulcon2.txt": {
+      "Formula": {
+        "Expression": "left([DataCorePlugin.Computed.Fuel_LitersPerLap],0,4)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.bias.txt": {
+      "Formula": {
+        "Expression": "[BrakeBias]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    }
+  },
+  "RolesEx": {
+    "main.lap": "LapRole;{}",
+    "main.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "main.speed": "SpeedRole;{}",
+    "Global.rpmbar": "RPMBarRole;{}",
+    "Global.speed": "SpeedRole;{}",
+    "Global.delta": "LiveDeltaRole;{\r\n  \"Precision\": 3\r\n}",
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.lap": "LapRole;{}",
+    "pitlimiter.pitspeed": "SpeedRole;{}",
+    "Global.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 2\r\n}",
+    "Global.split": "LapLastTimeRole;{}",
+    "Global.best": "LapBestTimeRole;{}",
+    "times.laptime": "LiveDeltaRole;{\r\n  \"Precision\": 3\r\n}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [],
+  "PagesMappings": [
+    {
+      "PageName": "idle",
+      "ConditionToPage": {
+        "Expression": "[GameRawData.Telemetry.EngineWarnings]=14"
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "main",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "laphistory",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "tyres",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "tires",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "pitlimiter",
+      "ConditionToPage": {
+        "Expression": "[PitLimiterOn]"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": true
+    },
+    {
+      "PageName": "times",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "extra",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    }
+  ],
+  "RefreshDelaysEx": {},
+  "VirtualPages": []
+}

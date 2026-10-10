@@ -1,0 +1,142 @@
+{
+  "BindingsEx": {
+    "global.watertmp.txt": {
+      "Formula": {
+        "Expression": "Round([WaterTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oilp.txt": {
+      "Formula": {
+        "Expression": "Round([OilPressure],1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.waterp.txt": {
+      "Formula": {
+        "Expression": "1.3"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.map.txt": {
+      "Formula": {
+        "Expression": "1"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.egtmp.txt": {
+      "FormatString": "",
+      "Formula": {
+        "Expression": "967"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.airtmp.txt": {
+      "Formula": {
+        "Expression": "[AirTemperature]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.vbat.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.Voltage]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oiltmp.txt": {
+      "Formula": {
+        "Expression": "Round([OilTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    }
+  },
+  "RolesEx": {
+    "Global.rpm": "RPMRole;{}",
+    "Global.lapnr": "LapRole;{}",
+    "Global.speed": "SpeedRole;{}",
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.fuel": "FuelRemainingRole;{}",
+    "page1_virt1.laptime": "LapLastTimeRole;{}",
+    "page1.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 3\r\n}",
+    "pit1.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 3\r\n}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [],
+  "PagesMappings": [
+    {
+      "PageName": "page0",
+      "ConditionToPage": {
+        "Expression": "[GameRawData.Telemetry.EngineWarnings]=14"
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "page1",
+      "ConditionToPage": {
+        "Expression": ""
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page2",
+      "ConditionToPage": {
+        "Expression": "if([GameRawData.Telemetry.IsOnTrack]=true,if([PitLimiterOn]=0,if([SpeedLocal]<1,true,false),false),false)"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page1_virt1",
+      "EventMappings": [
+        {
+          "EventName": "DataCorePlugin.NewLap",
+          "Duration": 3000
+        }
+      ],
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "pit1",
+      "ConditionToPage": {
+        "Expression": "if([PitLimiterOn]=true,if([SpeedLocal]>1,true,false),false)"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "pit2",
+      "ConditionToPage": {
+        "Expression": "if([PitLimiterOn]=true,if([SpeedLocal]<1,true,false),false)"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    }
+  ],
+  "RefreshDelaysEx": {},
+  "VirtualPages": [
+    {
+      "PageBase": "page1",
+      "PageName": "page1_virt1"
+    }
+  ]
+}

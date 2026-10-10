@@ -1,0 +1,220 @@
+{
+  "BindingsEx": {
+    "global.lpl.txt": {
+      "Formula": {
+        "Expression": "[DataCorePlugin.Computed.Fuel_LitersPerLap]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuelpos.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcFuelMixture]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.rarb.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcAntiRollRear]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.farb.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcAntiRollFront]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.dforward.txt": {
+      "Formula": {
+        "Expression": "format(round([PersistantTrackerPlugin.DriverAhead_00_Gap],2), '0.00')"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oilt.txt": {
+      "Formula": {
+        "Expression": "[OilTemperature]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.dbehind.txt": {
+      "Formula": {
+        "Expression": "format(round([PersistantTrackerPlugin.DriverBehind_00_Gap],2),'0.00')"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oilp.txt": {
+      "Formula": {
+        "Expression": "[OilPressure]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.brakeb.txt": {
+      "Formula": {
+        "Expression": "[BrakeBias]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.watert.txt": {
+      "Formula": {
+        "Expression": "[WaterTemperature]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page2.#page.pic": {
+      "Formula": {
+        "Expression": "if([PitLimiterOn]=1,4,2)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "pic"
+    },
+    "global.fuelp.txt": {
+      "Formula": {
+        "Expression": "[FuelPercent]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page1.#page.pic": {
+      "Formula": {
+        "Expression": "if([PitLimiterOn]=1,3,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "pic"
+    },
+    "global.battery.txt": {
+      "Formula": {
+        "Expression": "round([GameRawData.Telemetry.Voltage],2)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page2.ptp.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcPushToPass]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuel.txt": {
+      "Formula": {
+        "Expression": "format(round([Fuel],2),'0.00')"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ptp.txt": {
+      "Formula": {
+        "Expression": "if([GameRawData.Telemetry.dcPushToPass]='True','ON',0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ptp.bco": {
+      "Formula": {
+        "Expression": "if([GameRawData.Telemetry.dcPushToPass]='True',1,0)"
+      },
+      "StartColor": "#FF000000",
+      "EnableMiddleColor": false,
+      "MiddleColor": "#FF000000",
+      "MiddleColorValue": 1.0,
+      "EndColor": "#FFFFFF00",
+      "StartColorValue": 0.0,
+      "EndColorValue": 1.0,
+      "Mode": 4,
+      "TargetPropertyName": "bco"
+    },
+    "global.ptp.pco": {
+      "Formula": {
+        "Expression": "if([GameRawData.Telemetry.dcPushToPass]='True',1,0)"
+      },
+      "StartColor": "#FFFFFFFF",
+      "EnableMiddleColor": false,
+      "MiddleColor": "#FF000000",
+      "MiddleColorValue": 1.0,
+      "EndColor": "#FF000000",
+      "StartColorValue": 0.0,
+      "EndColorValue": 1.0,
+      "Mode": 4,
+      "TargetPropertyName": "pco"
+    }
+  },
+  "RolesEx": {
+    "page1_virt1.laptime": "LapLastTimeRole;{}",
+    "Global.pos": "PositionRole;{}",
+    "Global.rpm": "RPMRole;{}",
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.lap": "LapRole;{}",
+    "Global.delta": "LiveDeltaRole;{\r\n  \"Precision\": 3\r\n}",
+    "page1.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 2\r\n}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [],
+  "PagesMappings": [
+    {
+      "PageName": "splash",
+      "ConditionToPage": {
+        "Expression": "[GameRawData.Telemetry.EngineWarnings]=14"
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "page1",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page2",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page1_virt1",
+      "EventMappings": [
+        {
+          "EventName": "DataCorePlugin.NewLap",
+          "Duration": 3000
+        }
+      ],
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    }
+  ],
+  "RefreshDelaysEx": {
+    "global.dbehind": 1000,
+    "page1.dbehind": 1000,
+    "global.lap": 1000,
+    "page1.dforward": 1000,
+    "global.fuel": 1000,
+    "global.dforward": 1000
+  },
+  "VirtualPages": [
+    {
+      "PageBase": "page1",
+      "PageName": "page1_virt1"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+Final Implementation Plan
+Phase 1: Fix Existing Bugs (in new src/ files)
+1. src/fardriver_data.hpp — Copy from root fardriver.hpp, fix:
+- big_end_24b::value() operator precedence
+- Add bounds-checked GetAddr / GetWord wrappers
+- Remove unused PRINT_OFFSETOF/PRINT_SIZEOF macros
+2. src/fardriver_message.hpp — Copy from root fardriver_message.hpp, fix:
+- Index clamping on flashReadAddr[clamped_id]
+- Make start field properly reset-able (not just initialized)
+3. src/fardriver_controller.hpp — Copy/rewrite from root, fix:
+- SaveParameters/SaveCANParameters: +2 on buffer allocation
+- VerifyCRCMessage: add timeout_ms parameter, break after deadline
+- SendPacket: heap-allocate or use smaller static buffer
+- All read paths: add resync logic (scan for 0xAA on framing error, track dropped_bytes counter)
+- Add WriteWordSafe(addr, value) that does write→wait→readback→compare
+Phase 2: Add Safety Layer
+4. src/parameter_validator.hpp — Address range table:
+- Per-address: min, max, units, writable, critical flags
+- bool Validate(addr, value, &err_msg) — reject out-of-range before any write
+- Coverage for: all current limits, voltage protect thresholds, temp limits, phase offset
+5. src/safety_monitor.hpp — Alert-only safety task:
+- 5Hz poll of telemetry values
+- Check: phase current > rated, voltage > high protect, motor temp > protect
+- On violation: push alert to display_queue + log_queue + lora_queue
+- Track consecutive violations, escalate severity after 3
+Phase 3: RTOS Core
+6. src/ring_buffer.hpp — Lock-free SPSC ring buffer (512 bytes):
+- ISR_push(byte) — called from UART ISR
+- pop(byte&) — called from FrameParserTask
+- available(), overflow_count — diagnostics
+- No mutex needed (atomic head/tail on ARM)
+7. src/tasks.hpp — Central config:
+- Task handles, priorities, stack sizes, core affinities
+- Queue handles and depths
+- Data mutex handle
+8. src/main.cpp — Entry point:
+- setup(): init UARTs, create queues/mutex/tasks, start scheduler
+- loop(): empty (or vTaskDelete) — all work in tasks
+Phase 4: Tasks Implementation
+ 9. FrameParserTask (Core 0, prio 8):
+void FrameParserTask(void* pv) {
+    while(1) {
+        Read ring buffer byte-by-byte, sync on 0xAA
+        Assemble 16-byte frame if enough bytes
+        Validate CRC → map ID→addr → copy to telemetry item
+        xQueueSend(telemetry_queue, &item, 0)
+        Take data_mutex → memcpy to FardriverData → release
+    }
+}
+10. CommandWriteTask (Core 0, prio 7):
+void CommandWriteTask(void* pv) {
+    while(1) {
+        xQueueReceive(write_queue, &cmd, portMAX_DELAY)
+        Validate(cmd.addr, cmd.value)
+        Construct and send write frame
+        Wait up to 100ms for ACK frame
+        If critical: readback and compare, retry once on mismatch
+        Invoke cmd.callback(success)
+    }
+}
+11. KeepAliveTask (Core 0, prio 5):
+void KeepAliveTask(void* pv) {
+    TickType_t last_keepalive = 0;
+    while(1) {
+        vTaskDelayUntil(&last_keepalive, pdMS_TO_TICKS(1000))
+        SendRS323Data(0x13, 0x07, 0x5F, 0x5F)
+    }
+}
+12. TelemetryTask (Core 1, prio 6):
+void TelemetryTask(void* pv) {
+    while(1) {
+        if (xQueueReceive(telemetry_queue, &item, pdMS_TO_TICKS(100)) == pdTRUE) {
+            Compute speed, SOC, torque, temperatures
+            Push to display_queue, log_queue, lora_queue
+        }
+    }
+}
+13. SafetyMonitorTask (Core 1, prio 9) — alert-only:
+void SafetyMonitorTask(void* pv) {
+    TickType_t last = 0;
+    while(1) {
+        vTaskDelayUntil(&last, pdMS_TO_TICKS(200))  // 5Hz
+        Take mutex → check each monitored param against limits
+        If violated → increment violation_count
+        If violation_count >= 3 → push WARNING alert to display/log/lora
+        If back to normal → reset count, push OK alert
+    }
+}
+14. DisplayTask (Core 1, prio 4), LoggerTask (Core 1, prio 3), LoRaTask (Core 1, prio 4) — straightforward queue consumers.
+Tests
+15. tests/test_ring_buffer.cpp — Push/pop correctness, overflow detection
+16. tests/test_message.cpp — CRC correctness, frame parsing, OOB clamping
+17. tests/test_validator.cpp — Range checks for all addresses
+Files to create: ~17 new files
+Files modified: platformio.ini (new), library.json (update includes)
+Original files: untouched (legacy/reference)
+
+================================================================================
+
+Implementation complete. Here's the summary:
+Delivered: 20 files, ~64KB of code
+Bug Fixes (6 fixed)
+Bug	Fix
+big_end_24b::value() operator precedence	src/fardriver_data.hpp:29 — added parens
+Stack buffer overflow in SaveParams	src/fardriver_controller.cpp:74-85 — fixed buffer sizes, removed unsafe #ifndef __GNUC__ block entirely
+OOB flashReadAddr access	src/fardriver_message.hpp:107-109 — clamped ID to kValidIdMax
+VerifyCRCMessage busy-wait hang	src/fardriver_controller.cpp:194-198 — timeout-based loop with delay_ms
+read() union member offset bug	src/fardriver_controller.cpp:34 — reads raw.start + 1 instead of overwriting start
+Temperature conversion mismatch in safety	src/task_safety.cpp:24-25 — uses raw Celsius directly
+Safety Additions (4)
+Feature	File
+Parameter validator (28 address limits)	src/parameter_validator.cpp
+Write→readback→retry verification	src/fardriver_controller.cpp:98-107
+SysCmd via writeAddrRaw only (explicit)	src/fardriver_controller.cpp:119-121
+Alert-only safety monitor (5Hz, 3x escalation)	src/task_safety.cpp
+RTOS Architecture (8 tasks, 5 queues, 1 mutex)
+Core	Task	Prio	Role
+0	FrameParserTask	8	UART ISR→ring buffer→frame parse→queue
+0	CommandWriteTask	7	Validate→write→readback→ACK
+0	KeepAliveTask	5	1Hz heartbeat to controller
+1	SafetyMonitorTask	9	5Hz check, alert-only
+1	TelemetryTask	6	Compute values→fan out to display/log/lora
+1	DisplayTask	4	Nextion HMI updates
+1	LoggerTask	3	SD card CSV logging
+1	LoRaTask	4	EByte transparent transmission
+Tests
+- tests/test_ring_buffer.cpp — push/pop, wrap, overflow, reset
+- tests/test_message.cpp — CRC, OOB clamping, address lookup
+- tests/test_validator.cpp — in-range, out-of-range, negative, critical params
+Original root files untouched as legacy reference.

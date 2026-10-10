@@ -1,0 +1,177 @@
+{
+  "BindingsEx": {
+    "global.tplf.txt": {
+      "Formula": {
+        "Expression": "Round([TyrePressureFrontLeft]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tc2.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcTractionControl]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.bias.txt": {
+      "Formula": {
+        "Expression": "[BrakeBias]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.map.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.SessionData.CarSetup.Chassis.InCarDials.EngineMapSetting]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tc1.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcTractionControl2]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprf.txt": {
+      "Formula": {
+        "Expression": "Round([TyrePressureFrontRight]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprr.txt": {
+      "Formula": {
+        "Expression": "Round([TyrePressureRearRight]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ttlf.txt": {
+      "Formula": {
+        "Expression": "truncate([TyreTemperatureFrontLeft])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ttrf.txt": {
+      "Formula": {
+        "Expression": "truncate([TyreTemperatureFrontRight])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ttrr.txt": {
+      "Formula": {
+        "Expression": "truncate([TyreTemperatureRearRight])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprl.txt": {
+      "Formula": {
+        "Expression": "Round([TyrePressureRearLeft]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ttlr.txt": {
+      "Formula": {
+        "Expression": "truncate([TyreTemperatureRearLeft])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.delta.pco": {
+      "Formula": {
+        "Expression": "[DeltaToSessionBest]"
+      },
+      "StartColor": "#FF008000",
+      "EnableMiddleColor": true,
+      "MiddleColor": "#FFFFFFFF",
+      "MiddleColorValue": 0.0,
+      "EndColor": "#FFFF0000",
+      "StartColorValue": -0.001,
+      "EndColorValue": 0.001,
+      "Mode": 4,
+      "TargetPropertyName": "pco"
+    },
+    "global.mix.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcFuelMixture]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuel.txt": {
+      "Formula": {
+        "Expression": "[DataCorePlugin.Computed.Fuel_RemainingLaps]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    }
+  },
+  "RolesEx": {
+    "Global.rpm": "RPMRole;{}",
+    "Global.speed": "SpeedRole;{}",
+    "Global.delta": "LiveDeltaRole;{\r\n  \"Precision\": 3\r\n}",
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.lastlap": "LapLastTimeRole;{}",
+    "page1.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 2\r\n}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [],
+  "PagesMappings": [
+    {
+      "PageName": "page0",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "page1",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page1_virt1",
+      "EventMappings": [
+        {
+          "EventName": "DataCorePlugin.NewLap",
+          "Duration": 4000
+        }
+      ],
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page2",
+      "ConditionToPage": {
+        "Expression": "[PitLimiterOn]"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": false
+    }
+  ],
+  "RefreshDelaysEx": {},
+  "VirtualPages": [
+    {
+      "PageBase": "page1",
+      "PageName": "page1_virt1"
+    }
+  ]
+}

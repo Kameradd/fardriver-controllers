@@ -1,0 +1,132 @@
+{
+  "BindingsEx": {
+    "global.watertmp.txt": {
+      "Formula": {
+        "Expression": "round([WaterTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.lap.txt": {
+      "Formula": {
+        "Expression": "[TotalLaps]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oilp.txt": {
+      "Formula": {
+        "Expression": "[OilPressure]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.railp.txt": {
+      "Formula": {
+        "Expression": "'3.50'"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.throttle.txt": {
+      "Formula": {
+        "Expression": "truncate([Throttle])"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.batt.txt": {
+      "Formula": {
+        "Expression": "round([GameRawData.Telemetry.Voltage],1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.airt.txt": {
+      "Formula": {
+        "Expression": "round([AirTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.watert.txt": {
+      "Formula": {
+        "Expression": "round([WaterTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oilt.txt": {
+      "Formula": {
+        "Expression": "round([OilTemperature],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.fuelt.txt": {
+      "Formula": {
+        "Expression": "round([FuelPercent],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.lambda.txt": {
+      "Formula": {
+        "Expression": "'0.85'"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    }
+  },
+  "RolesEx": {
+    "Global.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 2\r\n}",
+    "Global.rpm": "RPMRole;{}",
+    "Global.lastlap": "LapLastTimeRole;{}",
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.diff": "LiveDeltaRole;{\r\n  \"Precision\": 3\r\n}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [
+    {
+      "X": 80,
+      "Y": 0,
+      "W": 100,
+      "H": 25,
+      "Action": "goto:page2",
+      "Pages": [
+        "page1"
+      ]
+    }
+  ],
+  "PagesMappings": [
+    {
+      "PageName": "splash",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "page1",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page2",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    }
+  ],
+  "RefreshDelaysEx": {},
+  "VirtualPages": []
+}

@@ -1,0 +1,307 @@
+{
+  "BindingsEx": {
+    "global.watert.txt": {
+      "Formula": {
+        "Expression": "round([WaterTemperature], 0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.oilt.txt": {
+      "Formula": {
+        "Expression": "round([OilTemperature], 0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tc.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcTractionControl2]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tc2.txt": {
+      "Formula": {
+        "Expression": "[TCLevel]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.thrshape.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dcThrottleShape]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.eng.txt": {
+      "Formula": {
+        "Expression": "1"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.eps.txt": {
+      "Formula": {
+        "Expression": "[GameRawData.Telemetry.dpPowerSteering]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.lapfuel.txt": {
+      "Formula": {
+        "Expression": "[DataCorePlugin.Computed.Fuel_RemainingLaps]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.bpf.txt": {
+      "Formula": {
+        "Expression": "round([GameRawData.Telemetry.LFbrakeLinePress],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.bpr.txt": {
+      "Formula": {
+        "Expression": "round([GameRawData.Telemetry.RRbrakeLinePress],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.btlf.txt": {
+      "Formula": {
+        "Expression": "Round([BrakeTemperatureFrontLeft],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.btrl.txt": {
+      "Formula": {
+        "Expression": "round([BrakeTemperatureRearLeft],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.btrf.txt": {
+      "Formula": {
+        "Expression": "round([BrakeTemperatureFrontRight],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.btrr.txt": {
+      "Formula": {
+        "Expression": "round([BrakeTemperatureRearRight],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ttlf.txt": {
+      "Formula": {
+        "Expression": "round([TyreTemperatureFrontLeft],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tplf.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureFrontLeft]/100,2)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprf.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureFrontRight]/100,2)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprl.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureRearLeft]/100,2)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.tprr.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureRearRight]/100,2)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ttrf.txt": {
+      "Formula": {
+        "Expression": "round([TyreTemperatureFrontRight],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ttrl.txt": {
+      "Formula": {
+        "Expression": "round([TyreTemperatureRearLeft],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ttrr.txt": {
+      "Formula": {
+        "Expression": "round([TyreTemperatureRearRight],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.delta.txt": {
+      "Formula": {
+        "Expression": "if([DeltaToSessionBest]>=10, round([DeltaToSessionBest],0),round([DeltaToSessionBest],1))"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.delta.pco": {
+      "Formula": {
+        "Expression": "[DeltaToSessionBest]"
+      },
+      "StartColor": "#FF008000",
+      "EnableMiddleColor": true,
+      "MiddleColor": "#FFFFFFFF",
+      "MiddleColorValue": 0.0,
+      "EndColor": "#FFFF0000",
+      "StartColorValue": -0.5,
+      "EndColorValue": 0.5,
+      "Mode": 4,
+      "TargetPropertyName": "pco"
+    },
+    "global.bbalance.txt": {
+      "Formula": {
+        "Expression": "''+[BrakeBias]+'%'"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page2.bbalance.txt": {
+      "Formula": {
+        "Expression": "[BrakeBias]"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.throttp.txt": {
+      "Formula": {
+        "Expression": "round([Throttle],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.clutchp.txt": {
+      "Formula": {
+        "Expression": "round([Clutch],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "global.ectt.txt": {
+      "Formula": {
+        "Expression": "round([GameRawData.Telemetry.WaterTemp],0)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page3.tplf.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureFrontLeft]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page3.tprf.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureFrontRight]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page3.tprl.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureRearLeft]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page3.tprr.txt": {
+      "Formula": {
+        "Expression": "round([TyrePressureRearRight]/100,1)"
+      },
+      "Mode": 2,
+      "TargetPropertyName": "txt"
+    },
+    "page3.speedlimit.bco": {
+      "Formula": {
+        "Expression": "if(left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit],2,1)='.',if([SpeedKmh]-1>left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit],0,4),1,0),if([SpeedKmh]>left([GameRawData.SessionData.WeekendInfo.TrackPitSpeedLimit],0,2),1,0))"
+      },
+      "StartColor": "#FF088208",
+      "EnableMiddleColor": false,
+      "MiddleColor": "#FF000000",
+      "MiddleColorValue": 1.0,
+      "EndColor": "#FFD30000",
+      "StartColorValue": 0.0,
+      "EndColorValue": 1.0,
+      "Mode": 4,
+      "TargetPropertyName": "bco"
+    }
+  },
+  "RolesEx": {
+    "Global.lfuel": "FuelRemainingRole;{}",
+    "Global.speed": "SpeedRole;{}",
+    "Global.laptime": "LapCurrentTimeRole;{\r\n  \"Precision\": 2\r\n}",
+    "Global.last": "LapLastTimeRole;{}",
+    "Global.gear": "GearRole;{\r\n  \"RedlineBlink\": false,\r\n  \"BlinkColor\": \"#FFFF0000\",\r\n  \"BlinkDelay\": 250\r\n}",
+    "Global.rpm": "RPMRole;{}",
+    "Global.speedlimit": "SpeedRole;{}"
+  },
+  "ClickActionsEx": {},
+  "HotSpots": [],
+  "PagesMappings": [
+    {
+      "PageName": "page0",
+      "ConditionToPage": {
+        "Expression": "[GameRawData.Telemetry.EngineWarnings]=14"
+      },
+      "InGame": false,
+      "Idle": true,
+      "Skip": false
+    },
+    {
+      "PageName": "page1",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": true,
+      "Idle": false,
+      "Skip": false
+    },
+    {
+      "PageName": "page2",
+      "ConditionToPage": {
+        "Expression": null
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": true
+    },
+    {
+      "PageName": "page3",
+      "ConditionToPage": {
+        "Expression": "[PitLimiterOn]"
+      },
+      "InGame": false,
+      "Idle": false,
+      "Skip": true
+    }
+  ],
+  "RefreshDelaysEx": {},
+  "VirtualPages": []
+}
